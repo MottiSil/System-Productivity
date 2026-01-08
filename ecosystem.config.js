@@ -4,9 +4,10 @@ module.exports = {
     script: 'npm',
     args: 'run preview',
     // Note: For better performance, consider using 'serve' directly:
-    // script: 'serve',
+    // First add to package.json: npm install --save-dev serve
+    // Then use:
+    // script: './node_modules/.bin/serve',
     // args: '-s dist -l 3000 --host 0.0.0.0',
-    // This requires 'serve' to be installed: npm install -g serve
     env: {
       NODE_ENV: 'production',
       PORT: 3000,

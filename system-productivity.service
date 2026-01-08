@@ -31,8 +31,8 @@ Environment="PORT=3000"
 
 # Use npm preview or serve command
 ExecStart=/usr/bin/npm run preview
-# Alternative: use serve
-# ExecStart=/usr/local/bin/serve -s dist -l 3000 --host 0.0.0.0
+# Alternative: use serve with npx (more portable across systems)
+# ExecStart=/usr/bin/npx serve -s dist -l 3000 --host 0.0.0.0
 
 Restart=always
 RestartSec=10
