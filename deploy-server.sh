@@ -118,12 +118,14 @@ case $DEPLOY_METHOD in
         echo "Starting development server..."
         if [ -n "$SERVER_VPN_IP" ]; then
             echo "Binding to VPN IP: $SERVER_VPN_IP"
-            HOST="$SERVER_VPN_IP" PORT=3000 npm run dev &
+            nohup env HOST="$SERVER_VPN_IP" PORT=3000 npm run dev > /tmp/app-dev-server.log 2>&1 &
         else
             echo "Binding to all interfaces (0.0.0.0)"
-            HOST=0.0.0.0 PORT=3000 npm run dev &
+            nohup env HOST=0.0.0.0 PORT=3000 npm run dev > /tmp/app-dev-server.log 2>&1 &
         fi
-        echo "✓ Development server started in background"
+        echo $! > /tmp/app-dev-server.pid
+        echo "✓ Development server started (PID: $(cat /tmp/app-dev-server.pid))"
+        echo "  Log file: /tmp/app-dev-server.log"
         ;;
     2)
         echo "Setting up PM2..."
@@ -134,6 +136,8 @@ case $DEPLOY_METHOD in
         
         # Update ecosystem.config.js if VPN IP provided
         if [ -n "$SERVER_VPN_IP" ]; then
+            # Create backup
+            cp ecosystem.config.js ecosystem.config.js.bak
             sed -i "s/HOST: '0.0.0.0'/HOST: '$SERVER_VPN_IP'/g" ecosystem.config.js
         fi
         

@@ -2,10 +2,11 @@
 # Place this file in /etc/systemd/system/system-productivity.service
 # 
 # Installation:
-# 1. sudo cp system-productivity.service /etc/systemd/system/
-# 2. sudo systemctl daemon-reload
-# 3. sudo systemctl enable system-productivity
-# 4. sudo systemctl start system-productivity
+# 1. Update the WorkingDirectory and ReadWritePaths with your actual paths
+# 2. sudo cp system-productivity.service /etc/systemd/system/
+# 3. sudo systemctl daemon-reload
+# 4. sudo systemctl enable system-productivity
+# 5. sudo systemctl start system-productivity
 #
 # Usage:
 # sudo systemctl status system-productivity
@@ -20,7 +21,8 @@ After=network.target
 [Service]
 Type=simple
 User=www-data
-WorkingDirectory=/path/to/lovable-app
+# IMPORTANT: Update this path to your actual application directory
+WorkingDirectory=/opt/lovable-app
 Environment="NODE_ENV=production"
 Environment="HOST=0.0.0.0"
 Environment="PORT=3000"
@@ -43,7 +45,8 @@ NoNewPrivileges=true
 PrivateTmp=true
 ProtectSystem=strict
 ProtectHome=true
-ReadWritePaths=/path/to/lovable-app/logs
+# IMPORTANT: Update this path to your actual application directory
+ReadWritePaths=/opt/lovable-app/logs
 
 [Install]
 WantedBy=multi-user.target
