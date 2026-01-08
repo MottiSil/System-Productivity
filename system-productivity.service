@@ -1,0 +1,49 @@
+# Systemd service file for System Productivity App
+# Place this file in /etc/systemd/system/system-productivity.service
+# 
+# Installation:
+# 1. sudo cp system-productivity.service /etc/systemd/system/
+# 2. sudo systemctl daemon-reload
+# 3. sudo systemctl enable system-productivity
+# 4. sudo systemctl start system-productivity
+#
+# Usage:
+# sudo systemctl status system-productivity
+# sudo systemctl restart system-productivity
+# sudo systemctl stop system-productivity
+# sudo journalctl -u system-productivity -f  # View logs
+
+[Unit]
+Description=System Productivity Web Application
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+WorkingDirectory=/path/to/lovable-app
+Environment="NODE_ENV=production"
+Environment="HOST=0.0.0.0"
+Environment="PORT=3000"
+# For VPN-only access, change HOST to your VPN IP:
+# Environment="HOST=10.8.0.1"
+
+# Use npm preview or serve command
+ExecStart=/usr/bin/npm run preview
+# Alternative: use serve
+# ExecStart=/usr/local/bin/serve -s dist -l 3000 --host 0.0.0.0
+
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=system-productivity
+
+# Security hardening (optional)
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/path/to/lovable-app/logs
+
+[Install]
+WantedBy=multi-user.target
