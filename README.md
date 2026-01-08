@@ -20,6 +20,9 @@ See [QUICKSTART.md](QUICKSTART.md) for detailed quick start instructions.
 
 - **[QUICKSTART.md](QUICKSTART.md)** - Fast deployment guide (5 minutes)
 - **[DEPLOYMENT.md](DEPLOYMENT.md)** - Comprehensive deployment documentation
+- **[ARCHITECTURE.md](ARCHITECTURE.md)** - System architecture and deployment options
+- **[SECURITY.md](SECURITY.md)** - Security checklist and best practices
+- **[TROUBLESHOOTING.md](TROUBLESHOOTING.md)** - Common issues and solutions
 - **[ecosystem.config.js](ecosystem.config.js)** - PM2 process manager configuration
 - **[docker-compose.yml](docker-compose.yml)** - Docker deployment setup
 - **[nginx-vpn-config.conf](nginx-vpn-config.conf)** - Nginx reverse proxy with VPN restriction
@@ -93,9 +96,11 @@ See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed configuration.
 ## Support
 
 For issues or questions:
-1. Check [DEPLOYMENT.md](DEPLOYMENT.md) troubleshooting section
-2. Review application logs
-3. Verify VPN connection and firewall rules
+1. Check [TROUBLESHOOTING.md](TROUBLESHOOTING.md) for common issues
+2. Review [DEPLOYMENT.md](DEPLOYMENT.md) for deployment guidance
+3. Check [SECURITY.md](SECURITY.md) for security configuration
+4. Review application logs
+5. Verify VPN connection and firewall rules
 
 ## License
 
